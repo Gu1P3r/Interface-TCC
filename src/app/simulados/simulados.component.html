@@ -1,0 +1,74 @@
+<div class="col-md-8" style="margin-left: 150px;">
+
+        <br />
+
+        <form [formGroup]="formPerguntas">
+        <div class="card card-outline-inverse">
+            <div class="card-header" style="background-color: #261E3F">
+                <button (click)="toggleS()" style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Simulado</button>
+            </div>
+
+            <div class="card-body" id="Simulado">
+
+                <div class="simulado">
+
+                    <hr>
+                    <div class="form-group">
+                        <h3 class="card-title" style="color: #0B0B3B;">Assunto:</h3>
+                        <h5 class="card-title" style="color: black;">{{questao.assunto}}</h5>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <h3 class="card-title" style="color: #0B0B3B;">Questão:</h3>
+                        <h5 class="card-title" style="color: black;">{{questao.questao}}</h5>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+
+                        <h3 class="card-title" style="color: #0B0B3B;">Alternativas:</h3>   
+                        <h4 class="card-title" style="color: #0B0B3B;">Letra A:</h4>
+                        <h5 class="card-title" style="color: black;">{{questao.alternativa1}}</h5>
+                        
+                        <br />
+
+                        <h4 class="card-title" style="color: #0B0B3B;">Letra B:</h4>
+                        <h5 class="card-title" style="color: black;">{{questao.alternativa2}}</h5>
+
+                        <br />
+
+                        <h4 class="card-title" style="color: #0B0B3B;">Letra C:</h4>
+                        <h5 class="card-title" style="color: black;">{{questao.alternativa3}}</h5>
+
+                        <br />
+
+                        <h4 class="card-title" style="color: #0B0B3B;">Letra D:</h4>
+                        <h5 class="card-title" style="color: black;">{{questao.alternativa4}}</h5>
+                    </div>
+                    <hr>
+
+                    <div class="form-group">
+                        <h5 class="card-title" style="color: #0B0B3B;">Resposta Coreta:</h5>
+                        <select class="form-control" id="respostasimulado" formControlName="respostasimulado"
+                            [(ngModel)]="questao.respostasimulado">
+                            <option></option>
+                            <option value="Letra A">Letra A</option>
+                            <option value="Letra B">Letra B</option>
+                            <option value="Letra C">Letra C</option>
+                            <option value="Letra D">Letra D</option>
+                        </select>
+                    </div>  
+                    <br />
+                    <button type="submit" (click)="resposta()" [disabled]="!formPerguntas.valid" class="btn btn-rounded btn-block btn-success"
+                        style="background-color: #0C0916; border-color: #0C0916; width: 300px; margin-left: 170px;">Responder</button>
+
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    <br />
+    <br />
+
+</div>

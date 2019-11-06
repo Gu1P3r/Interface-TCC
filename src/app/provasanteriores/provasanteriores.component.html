@@ -1,0 +1,33 @@
+<div class="provas">
+
+  <div class="col-md-8" style="margin-left: 150px;">
+<div class="card card-outline-inverse">
+      <div class="card-header" style="background-color: #261E3F">
+        <button (click)="toggleListarProva()"
+          style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Baixar Provas Anteriores</button>
+      </div>
+      <div class="card-body" *ngIf="!isListarProva" style="text-align: center; font-size: 30px; font-style: bolt">
+          <br />
+          <a href="https://drive.google.com/drive/folders/1FUHDL-aWVnzM_yu7K4Ncuuj6gD5DpvbF?usp=sharing" target="_blank">Clique aqui para baixar</a>
+      </div> 
+    </div>
+    
+    <br />
+
+    <div class="card card-outline-inverse">
+      <div class="card-header" style="background-color: #261E3F">
+        <button (click)="toggleProva()"
+          style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Fazer Upload da Prova</button>
+      </div>
+      <div class="card-body" *ngIf="!isProva" style="text-align: center; font-size: 30px; font-style: bolt">
+        <br />
+            <a href="https://drive.google.com/drive/u/1/folders/1FUHDL-aWVnzM_yu7K4Ncuuj6gD5DpvbF" target="_blank">Clique aqui para fazer o Upload</a>
+
+            
+      </div>
+    </div>
+    <br />
+    <br />
+  </div>
+
+</div>

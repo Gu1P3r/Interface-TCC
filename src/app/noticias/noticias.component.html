@@ -1,0 +1,53 @@
+
+  <div class="col-md-8" style="margin-left: 150px;">
+    <div class="card card-outline-inverse">
+      <form [formGroup]="formNoticia">
+        <div class="card-header" style="background-color: #261E3F">
+          <button (click)="toggleNoticia()"
+            style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Cadastro de Notícias</button>
+        </div>
+        <div class="card-body" *ngIf="!isNoticia" style="text-align: center;">
+
+          <div hidden class="col-md-12">
+            <div class="form-group">
+              <label for="noticiaid">Id</label>
+              <input type="text" id="id" [(ngModel)]="noticia.id" formControlName="id" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <div formGroupName="idprofessor">
+                <h5 class="card-title" style="color: black;">Nome do Professor:</h5>
+                <select formControlName="id" [(ngModel)]="noticia.idprofessor.id" class="form-control">
+                  <option selected></option>
+                  <option *ngFor="let professor of professores" value="{{professor.id}}">{{professor.nome}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            
+          <h5 class="card-title" style="color: #0B0B3B;">Insira o texto da Notícia:</h5>
+          <textarea type="text" class="form-control" id="noticias" style="height: 300px; width: 500px;"
+            formControlName="noticias" [(ngModel)]="noticia.noticias"></textarea>
+
+          <br />
+          <br />
+          <button href="#" (click)="sendSaveRequest()" class="btn btn-rounded btn-block btn-success"
+            style="background-color: #0C0916; border-color: #0C0916; width: 300px; margin-left: 170px;">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+    <br />
+    <div class="card card-outline-inverse">
+      <div class="card-header" style="background-color: #261E3F">
+        <button (click)="toggleGabarito()"
+          style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Fazer Upload do Gabarito</button>
+      </div>
+      <div class="card-body" *ngIf="!isGabarito" style="text-align: center; font-size: 30px; font-style: bolt">
+        <br />
+          <a href="https://drive.google.com/open?id=1US_Tapjl7T_ljM6gZwFC_2mrLO6ElY2y" target="_blank">Clique aqui para fazer o Upload</a>
+      </div>
+    </div>
+    <br />
+    <br />
+  </div>

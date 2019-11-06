@@ -1,0 +1,160 @@
+<div class="col-md-8" style="margin-left: 150px;">
+    <div class="card card-outline-inverse">
+    <form [formGroup]="formRecurso">
+      <div class="card-header" style="background-color: #261E3F">
+          <button (click) = "toggleCR()" style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Emitir Recurso</button>
+      </div>
+      <div class="card-body" id="cRecurso" style="color:black;">
+
+        <div hidden class="col-md-12">
+          <div class="form-group">
+            <label for="recursoid">Id</label>
+            <input type="text" id="id" [(ngModel)]="recurso.id" formControlName="id" class="form-control">
+          </div>
+        </div>
+
+          <div class="form-group">
+              <div formGroupName="idaluno">
+                <h5 class="card-title" style="color: black;">Selecione seu email:</h5>
+                <select formControlName="id" [(ngModel)]="recurso.idaluno.id" class="form-control">
+                  <option selected>Confirme seu email</option>
+                  <option *ngFor="let aluno of alunos" value="{{aluno.id}}">{{aluno.idusuario.email}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+                <h5 class="card-title" style="color: black;">Digite seu nome completo:</h5>
+                <input type= "text" class= "form-control" id= "nome" [(ngModel)]="recurso.nome" formControlName="nome"/>
+            </div>
+  
+          <div class="form-group">
+              <h5 class="card-title"  style="color: black;">Selecione a Prova:</h5>
+                <select class= "form-control" id= "tipoprova" [(ngModel)]="recurso.tipoprova" formControlName="tipoprova" placeholder= "Selecione a Prova">
+                  <option></option>
+                  <option value="Atualidades">Atualidades</option>
+                  <option value="Linguagens">Linguagens</option>
+                  <option value="Ciências Humanas">Ciências Humanas</option>
+                  <option value="Ciências da Natureza">Ciências da Natureza</option>
+                  <option value="Matemática">Matemática</option>
+                  <option value="Disciplinas Técnicas">Disciplinas Técnicas</option>
+                </select>
+          </div>
+  
+          <div class="form-group">
+              <h5 class="card-title"  style="color: black;">Número da Questão:</h5>
+                <input type= "number" class= "form-control" id= "numeroquestao" [(ngModel)]="recurso.numeroquestao" formControlName="numeroquestao"/>
+          </div>
+  
+          <div class="form-group">
+              <h5 class="card-title"  style="color: black;">Nome do Professor da Matéria:</h5>
+                <input type= "text" class= "form-control" id= "professormateria" [(ngModel)]="recurso.professormateria" formControlName="professormateria"/>
+          </div>
+  
+          <div class="form-group">
+              <h5 class="card-title"  style="color: black;">Solicitação:</h5>
+                <select class= "form-control" id= "solicitacaorecurso" [(ngModel)]="recurso.solicitacao" formControlName="solicitacao" placeholder= "Selecione a Solicitação">
+                  <option></option>
+                  <option>Alteração de Gabarito</option>
+                  <option>Anulação da Questão</option>
+                  <option>Outros(Especificar)</option>
+                </select>
+          </div>
+
+          <div class="form-group">
+              <h5 class="card-title"  style="color: black;">Curso:</h5>
+                <select class= "form-control" id= "curso" [(ngModel)]="recurso.curso" formControlName="curso">
+                <option></option>
+                  <option>ADM 1</option>
+                  <option>ELE 1</option>
+                  <option>MSI 1</option>
+                  <option>ADM 2</option>
+                  <option>ELE 2</option>
+                  <option>MSI 2</option>
+                  <option>ADM 3</option>
+                  <option>ELE 3</option>
+                  <option>MSI 3</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <h5 class="card-title"  style="color: black;">Data:</h5>
+              <input type= "date" class= "form-control" id= "data" [(ngModel)]="recurso.data" formControlName="data"/>
+        </div>
+  
+          <div class="form-group">
+              <h5 class="card-title"  style="color: black;">Fundamento/Explicação do Recurso:</h5>
+                <textarea type= "text" class= "form-control" id= "fundamento" [(ngModel)]="recurso.fundamento" formControlName="fundamento" style="height: 150px;"></textarea>
+          </div>
+  
+          <br />
+          <button (click)="sendSaveRequest()" type="submit" [disabled]="!formRecurso.valid" class="btn btn-rounded btn-block btn-success" style="background-color: #0B0B3B; border-color: #0B0B3B; width: 300px; margin-left: 170px;">Enviar Recurso</button>
+      </div>
+    </form>
+    </div>
+  <br />
+
+  <div class="card card-outline-inverse">
+    <div class="card-header" style="background-color: #261E3F">
+      <button (click)="toggleAR()"
+        style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Listar Recursos</button>
+    </div>
+    <div class="card-body" id="aRecurso">
+  
+      <mat-table id="tabelaRecursos" [dataSource]="dataSource" matSort>
+  
+        <ng-container matColumnDef="cod">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="nome">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Aluno </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.nome }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="curso">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Curso </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.curso }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="professormateria">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Professor </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.professormateria }}</mat-cell>
+        </ng-container>
+  
+
+        <ng-container matColumnDef="data">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Data </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.data }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="editar">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Editar </mat-header-cell>
+          <mat-icon>build</mat-icon>
+          <mat-cell *matCellDef="let row" (click)="editar(row)"><button type="button" id="btnEditar"
+              class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Editar</button></mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="excluir">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Excluir </mat-header-cell>
+          <mat-icon>delete</mat-icon>
+          <mat-cell *matCellDef="let row" (click)="excluir(row)" icon ="mdi mdi-account-plus"><button id="btnExcluir" type="button"
+              class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Excluir</button></mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+      </mat-table>
+  
+      <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+  
+    </div>
+  </div>
+  <br />
+  <br />
+
+  </div>

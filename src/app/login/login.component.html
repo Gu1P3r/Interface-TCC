@@ -1,0 +1,45 @@
+<body class="align" style="margin-top: -160px; background-color: #010110;">
+
+  <div class="grid" style="border-color: #f2f2f2; border-style: solid; border-radius: 10px; padding: 2em; background-color: #f2f2f2; margin-bottom: 50px; margin-top: 30px;">
+
+    <form action="https://httpbin.org/post" method="POST" class="form login" style="padding: 1em;">
+
+      <br />
+      <h2 style="font-size: 48px; font-weight: bold; color:#0C0916; margin-left: 30px; font-family:unset">
+        <img src="assets/images/logopluri5.png" alt="homepage" class="dark-logo" style="width: 45px; margin-right: 5px;"/>
+        Login
+      </h2>
+      <br />
+      <hr />
+      <br />
+    <form [formGroup]="formLogin">  
+      <div class="form__field">
+        <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Email</span></label>
+        <input id="email" type="text" [(ngModel)]="userLogin.email" formControlName="email" class="form__input" placeholder="Email" required>
+      </div>
+
+      <br />
+
+      <div class="form__field">
+        <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Senha</span></label>
+        <input id="senha" type="password" [(ngModel)]="userLogin.senha" formControlName="senha"  name="password" class="form__input" placeholder="Senha" required>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="form__field">
+        <input type="submit" (click)="login()" value="Entrar" style="color:white; background-color:#0C0916; border-radius: 20px; font-size: 20px;">
+      </div>
+      <br />
+      
+      <div class="form__field">
+        <button style="text-align: center; background-color: #f2f2f2; border:none; margin-left: 70px;">
+          <h6 style="color:#0C0916;" (click)="registrar()">Ainda não é cadastrado?</h6>
+        </button>
+      </div>
+    </form>
+  </form>
+
+  </div>
+</body>

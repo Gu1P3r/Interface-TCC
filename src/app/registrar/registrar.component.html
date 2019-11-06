@@ -1,0 +1,62 @@
+<body class="align" style="margin-top: -160px; background-color: #010110;">
+
+  <div class="grid" style="border-color: #f2f2f2; border-style: solid; border-radius: 10px; padding: 3em; background-color: #f2f2f2; margin-bottom: 50px; margin-top: 30px; width: 450px;">
+
+    <form action="https://httpbin.org/post" method="POST" class="form login" style="padding: 1em;">
+
+    <br />
+      <h2 style="font-size: 48px; font-weight: bold; color:#0C0916; font-family:unset">
+        <img src="assets/images/logopluri5.png" alt="homepage" class="dark-logo" style="width: 45px; margin-right: 5px;"/>
+        Registrar
+      </h2>
+      <br />
+      <hr />
+      <br />
+
+    <form [formGroup]="formUsuario">
+    <div hidden class="col-md-12">
+        <div class="form-group">
+          <label for="usuarioid">Id</label>
+          <input type="text" id="id" class="form-control" [(ngModel)]="usuario.id" formControlName="id">
+        </div>
+    </div>
+
+    <div class="cadastraremail">
+        <div class="form-group">
+      <br />
+        <h5 style="color:black; font-size: 20px;">Insira o seu email:</h5>
+        <input type= "email" id="email" class="form-control" [(ngModel)]="usuario.email" formControlName="email" placeholder= "Digite seu email" style="background-color: #f2f2f2;"/>
+      </div>
+    </div>
+
+      <br />
+
+      <div class="cadastrartipousuario">
+        <div class="form-group">
+        <h5 class="card-title"  style="color:black; font-size: 20px;">Selecione o tipo de usuário:</h5>
+        <select id= "tipo" class="form-control" [(ngModel)]="usuario.tipo" formControlName="tipo" style="background-color: #f2f2f2;">
+            <option></option>
+            <option value="1">Comissão Responsável</option>
+            <option value="2">Aluno</option>
+            <option value="3">Professor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cadastrarsenha">
+          <div class="form-group">
+        <br />
+          <h5 style="color:black; font-size: 20px;">Insira sua senha:</h5>
+          <input type= "password" id= "senha" class="form-control" placeholder= "Digite sua senha" [(ngModel)]="usuario.senha" formControlName="senha" style="background-color: #f2f2f2; height: 20px; border-radius: 5px; border-color: #010110;"/>
+        </div>
+      </div>
+      
+      <br />
+      <div class="form__field">
+          <input type="submit" (click)="sendSaveRequest()" value="Registrar" style="color:white; background-color:#0C0916; border-radius: 20px; font-size: 20px;">
+        </div>
+    </form>
+  </form>
+    <br />
+  </div>
+</body>

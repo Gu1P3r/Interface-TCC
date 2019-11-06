@@ -1,0 +1,101 @@
+<div class="col-md-8" style="margin-left: 150px;">
+  <div class="card card-outline-inverse">
+
+    <form [formGroup]="formProfessor">
+    <div class="card-header" style="background-color: #261E3F">
+      <button (click)="toggleCP()"
+        style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Cadastrar Perfil do
+        Professor</button>
+    </div>
+      <div hidden class="col-md-12">
+        <div class="form-group">
+          <label for="professorid">Id</label>
+          <input type="text" id="id" [(ngModel)]="professor.id" formControlName="id" class="form-control">
+        </div>
+      </div>
+      
+      <div class="card-body" id="cProfessores" style="color:black;">
+
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Nome Completo:</h5>
+          <input type="text" class="form-control" [(ngModel)]="professor.nome" formControlName="nome"placeholder="Digite o Nome"/>
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Grande Área:</h5>
+          <input type="text" class="form-control" [(ngModel)]="professor.grandearea" formControlName="grandearea" placeholder="Digite o Área de Atuação" />
+        </div>
+
+        <div class="form-group">
+          <div formGroupName="idusuario">
+            <h5 class="card-title" style="color: black;">Confirme seu Email:</h5>
+            <select formControlName="id" [(ngModel)]="professor.idusuario.id" class="form-control">
+              <option selected></option>
+              <option *ngFor="let usuario of usuarios" value="{{usuario.id}}">{{usuario.email}}</option>
+            </select>
+          </div>
+        </div>
+        
+        <br />
+        <button type="submit" [disabled]="!formProfessor.valid" (click)="sendSaveRequest()" class="btn btn-rounded btn-block btn-success"
+          style="background-color: #0C0916; border-color: #0C0916; width: 300px; margin-left: 210px;">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+<br />
+
+<div class="card card-outline-inverse">
+  <div class="card-header" style="background-color: #261E3F">
+    <button (click)="toggleAP()"
+      style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Atualizar Dados do
+      Professor</button>
+  </div>
+  <div class="card-body" id="aProfessores">
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+    <br/>
+
+    <mat-table id="tabelaProfessor" [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="cod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="grandearea">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Grande Area </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.grandearea }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.nome }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="editar">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Editar </mat-header-cell>
+        <mat-cell *matCellDef="let row" (click)="editar(row)"><button type="button" id="btnEditar"
+            class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Editar</button></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="excluir">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Excluir </mat-header-cell>
+        <mat-cell *matCellDef="let row" (click)="excluir(row)" icon ="mdi mdi-account-plus"><button id="btnExcluir" type="button"
+            class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Excluir</button></mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+
+  </div>
+</div>
+<br />
+<br />
+</div>

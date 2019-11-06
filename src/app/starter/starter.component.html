@@ -1,0 +1,36 @@
+<div class="col-md-8" style="margin-left: 150px;">
+    <div class="card card-outline-inverse">
+        <form [formGroup]="formNoticia">
+            <div class="card-header" style="background-color: #261E3F">
+                <button (click)="toggleNoticia()"
+                    style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Últimas Notícias</button>
+            </div>
+            <div class="card-body" *ngIf="!isNoticia">
+            <div formGroupName="noticias">
+                <div class="form-group" *ngFor="let noticia of noticias">
+                    <hr>
+                    <h3 class="card-title" style="color: #0B0B3B;">Professor {{noticia.idprofessor.nome}}</h3>
+                    <br />
+                    <h5 class="card-title" style="color: #0B0B3B; text-align: center;">{{noticia.noticias}}</h5>
+                    <hr>
+                    
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+        <br />
+        <div class="card card-outline-inverse">
+            <div class="card-header" style="background-color: #261E3F">
+                <button (click)="toggleGabarito()"
+                    style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Gabaritos</button>
+            </div>
+            <div class="card-body" *ngIf="!isGabarito" style="text-align: center; font-size: 30px; font-style: bolt">
+                    <br />
+                    <a href="https://drive.google.com/drive/folders/1US_Tapjl7T_ljM6gZwFC_2mrLO6ElY2y?usp=sharing" target="_blank">Clique aqui para baixar</a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />

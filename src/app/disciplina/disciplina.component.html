@@ -1,0 +1,113 @@
+  <div class="col-md-8" style="margin-left: 150px;">
+      <div class="card card-outline-inverse">
+          <div class="card-header" style="background-color: #261E3F">
+              <button (click) = "toggleCD()" style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Cadastrar Disciplina</button>
+          </div>
+
+          <form [formGroup]="formDisciplina">
+          <div id="cDisciplina" class="card-body" style="color:black;">
+          
+              <div hidden class="col-md-12">
+                  <div class="form-group">
+                    <label for="disciplinaid">Id</label>
+                    <input type="text" id="id" [(ngModel)]="disciplina.id" formControlName="id" class="form-control">
+                  </div>
+              </div>    
+
+              <div class="form-group">
+                <h5 class="card-title"  style="color: black;">Nome da Disciplina:</h5>
+                  <input type= "text" class= "form-control" id= "nome" [(ngModel)]="disciplina.nome" formControlName="nome" placeholder= "Digite o Nome"/>
+              </div>
+
+              <div class="form-group">
+                <div formGroupName="idcurso">
+                  <h5 class="card-title"  style="color: black;">Curso:</h5>
+                    <select id="id" formControlName="id" [(ngModel)]="disciplina.idcurso.id" class="form-control">
+                    <option selected></option>
+                    <option *ngFor="let curso of cursos" value="{{curso.id}}">{{curso.nome}}
+                    </option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div formGroupName="idprofessor">
+                  <h5 class="card-title"  style="color: black;">Professor Responsável:</h5>
+                    <select id="id" formControlName="id" [(ngModel)]="disciplina.idprofessor.id" class="form-control">
+                    <option selected></option>
+                    <option *ngFor="let professor of professores" value="{{professor.id}}">{{professor.nome}}
+                    </option>
+                    </select>
+                </div>
+              </div>
+
+              <br />
+            <button type="submit" [disabled]="!formDisciplina.valid" (click)="sendSaveRequest()" class="btn btn-rounded btn-block btn-success" style="background-color: #0C0916; border-color: #0C0916; width: 300px; margin-left: 170px;">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+
+      <br />
+
+      <div class="card card-outline-inverse">
+        <div class="card-header" style="background-color: #261E3F">
+          <button (click)="toggleAD()"
+            style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Atualizar Dados da
+            Disciplina</button>
+        </div>
+        <div class="card-body" id="aDisciplina">
+
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+          </mat-form-field>
+          <br/>
+
+          <mat-table id="tabelaDisciplinas" [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="cod">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="nome">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.nome }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="idcurso">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Curso </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.idcurso.nome }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="idprofessor">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Professor </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.idprofessor.nome }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="editar">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Editar </mat-header-cell>
+              <mat-cell *matCellDef="let row" (click)="editar(row)"><button type="button" id="btnEditar"
+                  class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Editar</button></mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="excluir">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Excluir </mat-header-cell>
+              <mat-cell *matCellDef="let row" (click)="excluir(row)"><button id="btnExcluir" type="button"
+                  class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Excluir</button></mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+
+        </div>
+
+      </div>
+
+
+
+
+  </div>

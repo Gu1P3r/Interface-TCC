@@ -1,0 +1,50 @@
+<div class="col-md-8" style="margin-left: 150px;">
+  <div class="card card-outline-inverse">
+
+    <div class="card-header" style="background-color: #261E3F">
+      <button (click)="toggleMedalha()"
+        style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Medalhas</button>
+    </div>
+
+    <div class="card-body" *ngIf="!isM" style="color:black; margin-left: 150px;">
+
+        <div *ngIf="iniciante1">
+            <img src="assets/images/medalhas/iniciante1.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="iniciante2">
+            <img src="assets/images/medalhas/iniciante2.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="iniciante3">
+            <img src="assets/images/medalhas/iniciante3.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="intermediario1">
+            <img src="assets/images/medalhas/intermediario1.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="intermediario2">
+            <img src="assets/images/medalhas/intermediario2.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="intermediario3">
+            <img src="assets/images/medalhas/intermediario3.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="avancado1">
+            <img src="assets/images/medalhas/avancado1.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="avancado2" style="margin-left: 200px;">
+            <img src="assets/images/medalhas/avancado2.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+        <div *ngIf="avancado3">
+            <img src="assets/images/medalhas/avancado3.jpeg" style="width: 450px; height: 450px;"/>
+        </div>
+
+    </div>
+
+  </div>
+</div>

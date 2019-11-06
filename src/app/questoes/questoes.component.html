@@ -1,0 +1,188 @@
+<div class="col-md-8" style="margin-left: 150px;">
+  <div class="card card-outline-inverse">
+      <div class="card-header" style="background-color: #261E3F">
+        <button (click)="toggleCQ()"
+          style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Cadastrar Questões</button>
+      </div>
+      <div class="card-body" id="cQuestoes">
+
+        <form [formGroup]="formPerguntas">
+
+        <div hidden class="col-md-12">
+          <div class="form-group">
+            <label for="perguntaid">Id</label>
+            <input type="text" id="id" [(ngModel)]="pergunta.id" formControlName="id" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div formGroupName="idprofessor">
+          <h5 class="card-title" style="color: black;">Professor:</h5>
+          <select id="id" formControlName="id" [(ngModel)]="pergunta.idprofessor.id" class="form-control">
+            <option selected></option>
+            <option *ngFor="let professor of professores" value="{{professor.id}}">{{professor.nome}}
+            </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Questão:</h5>
+          <textarea type="text" class="form-control" id="questao" [(ngModel)]="pergunta.questao"
+            formControlName="questao" placeholder="Digite a Pergunta" style="height: 150px;"></textarea>
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Alternativas:</h5>
+          <input type="text" class="form-control" id="alternativa1" [(ngModel)]="pergunta.alternativa1"
+            formControlName="alternativa1" placeholder="Digite a Alternativa 1" />
+          <br />
+          <br />
+          <input type="text" class="form-control" id="alternativa2" [(ngModel)]="pergunta.alternativa2"
+            formControlName="alternativa2" placeholder="Digite a Alternativa 2" />
+          <br />
+          <br />
+          <input type="text" class="form-control" id="alternativa3" [(ngModel)]="pergunta.alternativa3"
+            formControlName="alternativa3" placeholder="Digite a Alternativa 3" />
+          <br />
+          <br />
+          <input type="text" class="form-control" id="alternativa4" [(ngModel)]="pergunta.alternativa4"
+            formControlName="alternativa4" placeholder="Digite a Alternativa 4" />
+          <br />
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Resposta Coreta:</h5>
+          <select class="form-control" id="correta" formControlName="correta"
+            [(ngModel)]="pergunta.correta">
+            <option></option>
+            <option>Letra A</option>
+            <option>Letra B</option>
+            <option>Letra C</option>
+            <option>Letra D</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Nível de Dificuldade:</h5>
+          <select class="form-control" id="nivel" formControlName="nivel" [(ngModel)]="pergunta.nivel">
+            <option></option>
+            <option value="1">Facil</option>
+            <option value="2">Médio</option>
+            <option value="3">Difícil</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div formGroupName="iddisciplina">
+            <h5 class="card-title" style="color: black;">Disciplina:</h5>
+            <select id="disciplina" formControlName="id" [(ngModel)]="pergunta.iddisciplina.id" class="form-control">
+              <option selected></option>
+              <option *ngFor="let disciplina of disciplinas" value="{{disciplina.id}}">{{disciplina.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div formGroupName="idcurso">
+            <h5 class="card-title" style="color: black;">Curso:</h5>
+            <select id="id" formControlName="id" [(ngModel)]="pergunta.idcurso.id" class="form-control">
+              <option selected></option>
+              <option *ngFor="let curso of cursos" value="{{curso.id}}">{{curso.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Assunto:</h5>
+          <input type="text" class="form-control" id="assunto" formControlName="assunto" [(ngModel)]="pergunta.assunto"
+            placeholder="Digite qual o Assunto" />
+        </div>
+
+        <div class="form-group">
+          <h5 class="card-title" style="color: black;">Reaplicação:</h5>
+          <select (change)="onchange($event.target.value)" class="form-control" id="reaplicacao" formControlName="reaplicacao" [(ngModel)]="pergunta.reaplicacao"
+            placeholder="Informe se foi aplicada em algum Pluri">
+            <option value="1">Sim</option>
+            <option value="2">Não</option>
+          </select>
+          <br />
+
+          <br />
+        
+          <div *ngIf="reaplicacao">
+          <h5 class="card-title" style="color: black;">Caso foi aplicada, informe o ano:</h5>
+          <input type="number" class="form-control" id="anoaplicado" placeholder="Selecione qual o ano da Aplicação" />
+          </div>
+        </div>
+
+        <br />
+        <button type="submit" [disabled]="!formPerguntas.valid" class="btn btn-rounded btn-block btn-success"
+          style="background-color: #0C0916; border-color: #0C0916; width: 300px; margin-left: 170px;">Cadastrar</button>
+        </form>
+      </div>
+  </div>
+  <br />
+
+  <div class="card card-outline-inverse">
+    <div class="card-header" style="background-color: #261E3F">
+      <button (click)="toggleAQ()"
+        style="color:white; background-color:#261E3F;border: none; font-size: 20px;">Atualizar Questões</button>
+    </div>
+    <div class="card-body" id="aQuestoes">
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+          </mat-form-field>
+          <br/>
+          
+        <mat-table id="tabelaQuestao" [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="cod">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="assunto">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Assunto </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.assunto }}</mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="nivel">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Nivel </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.nivel }}</mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="iddisciplina">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Disciplina </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.iddisciplina.nome }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="idprofessor">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Professor </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.idprofessor.nome }}</mat-cell>
+              </ng-container>
+      
+            <ng-container matColumnDef="editar">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Editar </mat-header-cell>
+              <mat-cell *matCellDef="let row" (click)="editar(row)"><button type="button" id="btnEditar"
+                  class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Editar</button></mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="excluir">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Excluir </mat-header-cell>
+              <mat-cell *matCellDef="let row" (click)="excluir(row)" icon ="mdi mdi-account-plus"><button id="btnExcluir" type="button"
+                  class="btn btn-info pull-center" style="background-color: #261E3F; color: white; border-color: #261E3F">Excluir</button></mat-cell>
+            </ng-container>
+      
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      
+          </mat-table>
+      
+          <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+    </div>
+  </div>
+</div>
